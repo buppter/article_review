@@ -1,0 +1,9 @@
+.detail-table > tr > th{
+    width: 330px;
+}
+
+.input-group-addon{
+    border: 1px #9e9e9e solid;
+    padding: 0 6px;
+    border-left: none;
+}

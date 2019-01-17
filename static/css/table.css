@@ -1,0 +1,57 @@
+.title{
+    margin-top:22px;
+}
+.form-title{
+    background-color:#ccc;
+    padding: 6px 0px 1px 8px;
+}
+.form-title h3 {
+    font-size:16px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.introduction{
+    margin-bottom: 22px;
+}
+.base-form{
+    margin-bottom: 15px;
+    border: 1px #ccc solid;
+}
+.base-form .content{
+    background-color: #f8f8f8;
+    padding: 20px;
+}
+/*.right{*/
+    /*text-align: right;*/
+/*}*/
+
+.content .btn{
+    box-shadow:none;
+}
+
+
+.base-card{
+    min-width: 930px;
+}
+.base-card .content{
+    background-color: #f8f8f8;
+    padding: 20px;
+}
+.table-container{
+    min-width: 700px;
+    width: 90%;
+    margin: 0 auto
+}
+.table-tr > th{
+    padding:0.7rem 0.3rem
+}
+
+.table-tbody > tr > td{
+    vertical-align: middle;
+}
+
+.action-btn{
+    padding: 0.25rem 0.25rem
+}
+
