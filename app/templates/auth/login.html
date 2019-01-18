@@ -2,59 +2,76 @@
 <html lang="zh-CN">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="icon" href="../static/favicon.ico">
-  <title>Login</title>
-  <link rel="stylesheet" href="../static/css/bootstrap.css">
-  <link rel="stylesheet" href="../static/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../static/css/login.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}" type="text/css">
 
 </head>
 
 <body>
 
-  <div class="main">
-    <div class="login-logo text-center mb-5">
-      <a class="navbar-brand" href="../index.html">
-        <img class="mb-1" src="../static/img/logo.png" width="72" height="72"></br>
-        CEEP-BIT
-      </a>
+<div class="main">
+    <div class="row">
+        {% with messages = get_flashed_messages() %}
+            {% for message in messages %}
+                {% if message %}
+                    <div class="alert alert-warning" role="alert">{{ message }}</div>
+                {% endif %}
+            {% endfor %}
+        {% endwith %}
+        {% if form and form.errors %}
+            {% for key, error in form.errors.items() %}
+                <div class="alert alert-warning" role="alert">{{ error }}</div>
+            {% endfor %}
+        {% endif %}
     </div>
-    <form class="form-signin">
-      <div class="text-center mb-4 mt-2">
-        <h1 class="h2 font-weight-normal">Please sign in</h1>
-      </div>
-      <hr>
-      <div class="form-group">
-        <label for="inputEmail">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-      </div>
-      <div class="form-group">
-        <label for="inputPassword">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-      </div>
-      <div class="form-group">
-        <label for="RoleFormControlSelect1">Sign As</label>
-        <select class="form-control" id="RoleFormControlSelect1">
-          <option value="1">Author</option>
-          <option value="2">Reviewer</option>
-          <option value="4">Editor</option>
-        </select>
-      </div>
+    <div class="login-logo text-center mb-5">
+        <a class="navbar-brand" href="../index.html">
+            <img class="mb-1" src="{{ url_for('static', filename='img/logo.png') }}" width="72" height="72"></br>
+            CEEP-BIT
+        </a>
+    </div>
+    <form class="form-signin" method="post">
+        <div class="text-center mb-4 mt-2">
+            <h1 class="h2 font-weight-normal">Please sign in</h1>
+        </div>
+        <hr>
+        <div class="form-group">
+            <label for="inputEmail">Email address</label>
+            <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required
+                   autofocus>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password"
+                   required>
+        </div>
+        <div class="form-group">
+            <label for="RoleFormControlSelect1">Sign As</label>
+            <select class="form-control" id="RoleFormControlSelect1">
+                <option value="1">Author</option>
+                <option value="2">Reviewer</option>
+                <option value="4">Editor</option>
+            </select>
+        </div>
 
-      <div class="mt-4 mb-4">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      </div>
-      <hr>
-      <a href="#">I forgot my password</a><br>
-      <a href="./register.html" class="text-center">Register a new membership</a>
+        <div class="mt-4 mb-4">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </div>
+        <hr>
+        <a href="#">I forgot my password</a><br>
+        <a href="./register.html" class="text-center">Register a new membership</a>
     </form>
-  </div>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="../static/js/bootstrap.bundle.min.js"></script>
-  <script src="../static/js/bootstrap.js"></script>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
 </body>
 
 </html>

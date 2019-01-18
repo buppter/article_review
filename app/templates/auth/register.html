@@ -1,100 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% block title %}
+    <title>Register</title>
+{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}" type="text/css">
+{% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="../static/favicon.ico">
-    <title>Index</title>
-    <link rel="stylesheet" href="../static/css/bootstrap.css" type="text/css">
-    <link rel="stylesheet" href="../static/css/registration.css" type="text/css">
-    <link rel="stylesheet" href="../static/css/index.css" type="text/css">
-</head>
 
-<body>
-
-    <!-- 顶部导航栏 -->
-    <header>
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-            <a class="navbar-brand" href="../index.html">
-                <img src="../static/img/logo_white.png" width="30" height="30" class="d-inline-block align-top" alt="">
-                CEEP-BIT
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="./home.html">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Submit Paper</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Guide</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="languageDropdownMenuLink" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            Language
-                        </a>
-                        <div class="dropdown-menu-right dropdown-menu" aria-labelledby="languageDropdownMenuLink">
-                            <a class="dropdown-item" href="#">English</a>
-                            <a class="dropdown-item" href="#">简体中文</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="roleDropdownMenuLink" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            Switch To
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="roleDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Author</a>
-                            <a class="dropdown-item" href="#">Reviewer</a>
-                            <a class="dropdown-item" href="#">Editor</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="userDropdownMenuLink" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            shixintian@bupt.edu.cn
-                        </a>
-                        <div class="dropdown-menu-right dropdown-menu" aria-labelledby="userrDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Change Details</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Log Out</a>
-                            <!-- <a class="dropdown-item" href="#">Something</a> -->
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <a class="btn btn-outline-light" href="./login.html">Sign up</a>
-
-        </nav>
-    </header>
-
-    <!-- logo信息 -->
-    <!-- <div class="logoBar-default">
-    <img src="./img/logoBar.png" width="30%"  class="pt-1 pb-1 ml-3">
-</div> -->
-
-    <!-- 面包屑 -->
-    <!-- <nav aria-label="breadcrumb">
-    <ol class="breadcrumb" style="padding: 0.3rem 1rem; border-radius: 0%">
-      <li class="breadcrumb-item"><a href="#">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Registration</li>
-    </ol>
-  </nav> -->
-
-    <!-- 主体部分 -->
+{% block content %}
     <main role="main" class="flex-shrink-0">
         <div class="container">
+            <div class="row">
+                {% with messages = get_flashed_messages() %}
+                    {% for message in messages %}
+                        {% if message %}
+                            <div class="alert alert-warning" role="alert">{{ message }}</div>
+                        {% endif %}
+                    {% endfor %}
+                {% endwith %}
+                {% if form and form.errors %}
+                    {% for key, error in form.errors.items() %}
+                        <div class="alert alert-warning" role="alert">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
             <div class="title">
                 <h3>Registration Page</h3>
             </div>
@@ -107,10 +36,11 @@
                     have a <span class="text-danger">*</span> next to the label.</p>
                 <p class="text-justify">&bull; Please note that we respect your privacy and do not disclose, rent or
                     sell your personal information to any
-                    non-affiliated third parties without your consent, except as may be stated in our Privacy Policy.</p>
+                    non-affiliated third parties without your consent, except as may be stated in our Privacy
+                    Policy.</p>
             </div>
             <div class="base-form">
-                <form>
+                <form method="post">
                     <!--基本信息-->
                     <div class="form-title">
                         <h3>Login Information</h3>
@@ -120,7 +50,7 @@
                             <label for="inputEmail" class="col-sm-3 col-form-label ">E-mail Address</label>
                             <div class="col-sm-4">
                                 <input type="email" class="form-control form-control-sm" id="inputEmail" name="email"
-                                    aria-describedby="emailHelp" required>
+                                       aria-describedby="emailHelp" required>
                             </div>
                             <small class="form-text text-danger" id="emailHelp">
                                 *req
@@ -138,7 +68,8 @@
                         <div class="row">
                             <label for="inputPassword" class="col-sm-3 col-form-label  ">Password</label>
                             <div class="col-sm-4">
-                                <input type="password" class="form-control form-control-sm" id="inputPassword" name="password">
+                                <input type="password" class="form-control form-control-sm" id="inputPassword"
+                                       name="password" required>
                             </div>
                             <small class="form-text text-danger">
                                 *req
@@ -147,7 +78,8 @@
                         <div class="row">
                             <label for="inputPassword1" class="col-sm-3 col-form-label  ">Confirm Password</label>
                             <div class="col-sm-4">
-                                <input type="password" class="form-control form-control-sm" id="inputPassword1" name="password1">
+                                <input type="password" class="form-control form-control-sm" id="inputPassword1"
+                                       name="password2" required>
                             </div>
                             <small class="form-text text-danger">
                                 *req
@@ -179,8 +111,9 @@
                         <div class="row">
                             <label for="firstname" class="col-sm-3 col-form-label ">First Name</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" id="firstname" name="firstname"
-                                    aria-describedby="firstnameHelp" required>
+                                <input type="text" class="form-control form-control-sm" id="first_name"
+                                       name="first_name"
+                                       aria-describedby="firstnameHelp" required>
                             </div>
                             <small class="form-text text-danger" id="firstnameHelp">
                                 *req
@@ -189,14 +122,15 @@
                         <div class="row">
                             <label for="middlename" class="col-sm-3 col-form-label ">Middle Name</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" id="middlename" name="middlename">
+                                <input type="text" class="form-control form-control-sm" id="middle_name"
+                                       name="middle_name">
                             </div>
                         </div>
                         <div class="row">
                             <label for="lastname" class="col-sm-3 col-form-label ">Last Name</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" id="lastname" name="lastname"
-                                    aria-describedby="lastnameHelp" required>
+                                <input type="text" class="form-control form-control-sm" id="lastname" name="last_name"
+                                       aria-describedby="lastnameHelp" required>
                             </div>
                             <small class="form-text text-danger" id="lastnameHelp">
                                 *req
@@ -214,7 +148,8 @@
                         <div class="row">
                             <label for="preferredName" class="col-sm-3 col-form-label ">Preferred Name</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" id="preferredName" name="preferredName">
+                                <input type="text" class="form-control form-control-sm" id="preferredName"
+                                       name="nick_name">
                             </div>
                             <small class="form-text">
                                 (nickname)
@@ -223,20 +158,23 @@
                         <div class="row">
                             <label for="telephoneNumber" class="col-sm-3 col-form-label ">Telephone Number</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" id="telephoneNumber" name="telephoneNumber">
+                                <input type="text" class="form-control form-control-sm" id="phone_number"
+                                       name="phone_number">
                             </div>
                         </div>
                         <div class="row">
                             <label for="faxNumber" class="col-sm-3 col-form-label ">Fax Number</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" id="faxNumber" name="faxNumber">
+                                <input type="text" class="form-control form-control-sm" id="faxNumber"
+                                       name="fax_number">
                             </div>
                         </div>
                         <div class="row">
                             <label for="secondaryEmail" class="col-sm-3 col-form-label ">Secondary E-mail</label>
                             <div class="col-sm-4">
-                                <input type="email" class="form-control form-control-sm" id="secondaryEmail" name="secondaryEmail"
-                                    maxlength="191" multiple>
+                                <input type="email" class="form-control form-control-sm" id="secondary_email"
+                                       name="secondary_email"
+                                       maxlength="191" multiple>
                             </div>
                             <small style="width:41%;">
                                 (Multiple e-mail addresses should be separated by a comma. A maximum of 191 characters
@@ -253,49 +191,36 @@
                         <div class="row">
                             <label for="position" class="col-sm-3 col-form-label ">Telephone Number</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" id="position" name="position">
+                                <input type="text" class="form-control form-control-sm" id="institution_phone_number"
+                                       name="institution_phone_number">
                             </div>
                         </div>
                         <div class="row">
                             <label for="institution" class="col-sm-3 col-form-label ">Institution</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" id="institution" name="institution">
+                                <input type="text" class="form-control form-control-sm" id="institution"
+                                       name="institution">
                             </div>
                         </div>
                         <div class="row">
                             <label for="department" class="col-sm-3 col-form-label ">Department</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" id="department" name="department">
+                                <input type="text" class="form-control form-control-sm" id="department"
+                                       name="department">
                             </div>
                         </div>
                         <div class="row">
                             <label for="streetAdress" class="col-sm-3 col-form-label ">Street Adress</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" id="streetAdress" name="streetAdress"
-                                    aria-describedby="streetAdressHelp" required>
+                                <input type="text" class="form-control form-control-sm" id="street_address"
+                                       name="street_address"
+                                       aria-describedby="streetAdressHelp" required>
                             </div>
                             <small class="form-text text-danger" id="streetAdressHelp">
                                 *req
                             </small>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-3" style="height:38px"></div>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" name="streetAdress">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3" style="height:38px"></div>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" name="streetAdress">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3" style="height:38px"></div>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" name="streetAdress">
-                            </div>
-                        </div>
+
                         <div class="row">
                             <label for="city" class="col-sm-3 col-form-label ">City</label>
                             <div class="col-sm-4">
@@ -462,7 +387,8 @@
                         <div class="row">
                             <label for="state" class="col-sm-3 col-form-label ">State or Province</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" id="state" name="state">
+                                <input type="text" class="form-control form-control-sm" id="state"
+                                       name="state_or_province">
                             </div>
                         </div>
                         <div class="row">
@@ -490,49 +416,52 @@
                         <div class="row">
                             <label class="col-sm-3 col-form-label">Personal Keywords </label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" name="keywords">
+                                <input type="text" class="form-control form-control-sm" name="person_keywords">
                             </div>
                             <small class="form-text text-danger">*req</small>
                         </div>
                         <div class="row">
                             <div class="col-sm-3" style="height:38px"></div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" name="keywords">
+                                <input type="text" class="form-control form-control-sm" name="person_keywords1">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3" style="height:38px"></div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" name="keywords">
+                                <input type="text" class="form-control form-control-sm" name="person_keywords2">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3" style="height:38px"></div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" name="keywords">
+                                <input type="text" class="form-control form-control-sm" name="person_keywords3">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3" style="height:38px"></div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" name="keywords">
+                                <input type="text" class="form-control form-control-sm" name="person_keywords4">
                             </div>
                         </div>
-                        <div class="row">
-                            <label class="col-sm-3 col-form-label">Available as a Reviewer?</label>
-                            <div class="col-sm-4" style="padding-top:calc(0.375rem + 1px) ">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="reviewerOptions" id="inlineRadio1"
-                                        value="1">
-                                    <label class="form-check-label" for="inlineRadio1">Yes</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="reviewerOptions" id="inlineRadio2"
-                                        value="0">
-                                    <label class="form-check-label" for="inlineRadio2">No</label>
-                                </div>
-                            </div>
-                        </div>
+
+                        {#                        <div class="row">#}
+                        {#                            <label class="col-sm-3 col-form-label">Available as a Reviewer?</label>#}
+                        {#                            <div class="col-sm-4" style="padding-top:calc(0.375rem + 1px) ">#}
+                        {#                                <div class="form-check form-check-inline">#}
+                        {#                                    <input class="form-check-input" type="radio" name="reviewerOptions"#}
+                        {#                                           id="inlineRadio1"#}
+                        {#                                           value="1">#}
+                        {#                                    <label class="form-check-label" for="inlineRadio1">Yes</label>#}
+                        {#                                </div>#}
+                        {#                                <div class="form-check form-check-inline">#}
+                        {#                                    <input class="form-check-input" type="radio" name="reviewerOptions"#}
+                        {#                                           id="inlineRadio2"#}
+                        {#                                           value="0">#}
+                        {#                                    <label class="form-check-label" for="inlineRadio2">No</label>#}
+                        {#                                </div>#}
+                        {#                            </div>#}
+                        {#                        </div>#}
                         <!--提交按钮-->
                         <div class="content mt-3">
                             <div class="form-group row">
@@ -552,27 +481,4 @@
             <!--</div>-->
         </div>
     </main>
-
-    <!-- 底部 -->
-    <footer class="footer mt-auto py-3 bg-dark">
-        <div class="container text-muted text-center">
-            <sapn class="">
-                <a class="text-muted" href="http://www.bit.edu.cn/">北京理工大学</a> | <a class="text-muted" href="http://sme.bit.edu.cn/">北京理工大学管理与经济学院</a>
-                | <a class="text-muted" href="http://www.ceep.net.cn/" target="_blank">北京理工大学能源与环境政策研究中心</a>
-                </span></br>
-                <span class="text-muted">版权所有©2019 北京理工大学能源与环境政策研究中心 京ICP备10019879 京公网安备110402430044</span></br>
-
-                <sapn class="text-muted">Copyright @2019 Center for Energy and Environmental Policy Research. All
-                    Rights Reserved</span>
-        </div>
-    </footer>
-
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="../static/js/bootstrap.bundle.min.js"></script>
-    <script src="../static/js/bootstrap.js"></script>
-
-</body>
-
-</html>
+{% endblock %}
