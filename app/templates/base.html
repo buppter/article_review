@@ -67,7 +67,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="userDropdownMenuLink" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
-                            shixintian@bupt.edu.cn
+                            {{ current_user.email }}
                         </a>
                         <div class="dropdown-menu-right dropdown-menu" aria-labelledby="userrDropdownMenuLink">
                             <a class="dropdown-item" href="#">Change Details</a>
@@ -77,7 +77,7 @@
                         </div>
                     </li>
                 {% else %}
-                    <a class="btn btn-outline-light" href="./html/login.html">Sign up</a>
+                    <a class="btn btn-outline-light" href="{{ url_for('web.login') }}">Sign up</a>
 
                 {% endif %}
             </ul>

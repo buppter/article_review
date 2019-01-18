@@ -12,7 +12,7 @@ _Author_ = 'BUPPT'
 
 @web.route("/")
 def index():
-    return "hello"
+    return render_template('index.html')
 
 
 @web.route("/register", methods=["GET", "POST"])
