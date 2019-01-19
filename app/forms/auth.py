@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from wtforms import Form, StringField, PasswordField, IntegerField, RadioField
+from wtforms import Form, StringField, PasswordField, IntegerField, BooleanField, RadioField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 
 from app.models.user import User
@@ -80,21 +80,14 @@ class RegisterForm(Form):
     person_keywords3 = StringField()
     person_keywords4 = StringField()
 
-    is_reviewer = RadioField(validators=[
-        DataRequired(message="Please choose whether you want to register as a reviewer")
-    ])
+    is_reviewer = IntegerField(
+        validators=[
+            DataRequired(message="Please choose whether you want to register as a reviewer")
+        ])
 
     def validate_email(self, field):
         if User.query.filter_by(email=field.data).first():
             raise ValidationError("This Email has been registered")
-
-    # def validate_secondary_email(self, field):
-    #     if User.query.filter_by(secondary_email=field.data).first():
-    #         raise ValidationError("This Email has existed")
-    #
-    # def validate_nick_name(self, field):
-    #     if User.query.filter_by(nick_name=field.data).first():
-    #         raise ValidationError("This nickname has existed")
 
 
 class LoginForm(Form):
@@ -107,4 +100,8 @@ class LoginForm(Form):
     password = PasswordField(validators=[
         DataRequired(message="please input your password"),
         Length(6, 32)
+    ])
+
+    role = IntegerField(validators=[
+        DataRequired(message="Please select your role")
     ])

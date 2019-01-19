@@ -237,7 +237,7 @@
                                 <select class="custom-select custom-select-sm " id="country" name="country_id" required>
                                     <option value="" hidden disabled selected>Please choose a country</option>
                                     {% for country in all_countries %}
-                                    <option value="{{ country.id }}">{{ country.country_name }}</option>
+                                        <option value="{{ country.id }}">{{ country.country_name }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -309,19 +309,19 @@
                         <div class="row">
                             <label class="col-sm-3 col-form-label">Available as a Reviewer?</label>
                             <div class="col-sm-4" style="padding-top:calc(0.375rem + 1px) ">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="is_reviewer"
-                                           id="inlineRadio1"
-                                           value="1">
-                                    <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline1" name="is_reviewer"
+                                           class="custom-control-input" value="1">
+                                    <label class="custom-control-label" for="customRadioInline1">Yes</label>
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="is_reviewer"
-                                           id="inlineRadio2"
-                                           value="0">
-                                    <label class="form-check-label" for="inlineRadio2">No</label>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline2" name="is_reviewer"
+                                           class="custom-control-input" value="0">
+                                    <label class="custom-control-label" for="customRadioInline2">No</label>
                                 </div>
                             </div>
+
+
                         </div>
                         <!--提交按钮-->
                         <div class="content mt-3">

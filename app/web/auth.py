@@ -4,7 +4,7 @@ from flask_login import login_user, logout_user
 
 from app.forms.auth import RegisterForm, LoginForm
 from app.models.base import db
-from app.models.user import User, CountryList
+from app.models.user import User, CountryList, Permission
 from app.web import web
 
 _Author_ = 'BUPPT'
@@ -26,10 +26,13 @@ def register():
             if data['person_keywords%s' % i] != '':
                 keywords.append(data['person_keywords%s' % i])
         keywords = ",".join(keywords)
+
         with db.auto_commit():
             user = User()
             user.set_attrs(form.data)
             user.person_keywords = keywords
+            if data["is_reviewer"] == 1:
+                user.role.add_permission(Permission.REVIEWER)
             db.session.add(user)
 
         return redirect(url_for('web.login'))
@@ -43,7 +46,8 @@ def login():
 
     if request.method == "POST" and form.validate():
         user = User.query.filter_by(email=form.email.data).first()
-        if user and user.check_password(form.password.data):
+        is_auth = user.role.permissions & form.data['role'] == form.data['role']
+        if user and user.check_password(form.password.data) and is_auth:
             login_user(user, remember=True)
             next_url = request.args.get('next')
             if not next_url or not next_url.startswith('/'):

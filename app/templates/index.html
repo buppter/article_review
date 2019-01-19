@@ -58,8 +58,11 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="roleDropdownMenuLink">
                             <a class="dropdown-item" href="#">Author</a>
-                            <a class="dropdown-item" href="#">Reviewer</a>
-                            <a class="dropdown-item" href="#">Editor</a>
+                            {% if current_user.can(Permission.REVIEWER) %}
+                                <a class="dropdown-item" href="#">Reviewer</a>
+                            {% elif current_user.can(Permission.EDITOR) %}
+                                <a class="dropdown-item" href="#">Editor</a>
+                            {% endif %}
                         </div>
                     </li>
                     <li class="nav-item dropdown">
