@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from flask import render_template, request, redirect, url_for, flash
-from flask_login import login_user
+from flask_login import login_user, logout_user
 
 from app.forms.auth import RegisterForm, LoginForm
 from app.models.base import db
-from app.models.user import User
+from app.models.user import User, CountryList
 from app.web import web
 
 _Author_ = 'BUPPT'
@@ -18,6 +18,7 @@ def index():
 @web.route("/register", methods=["GET", "POST"])
 def register():
     form = RegisterForm(request.form)
+    all_countries = CountryList.query.all()
     if request.method == 'POST' and form.validate():
         data = form.data
         keywords = [data['person_keywords']]
@@ -33,7 +34,7 @@ def register():
 
         return redirect(url_for('web.login'))
 
-    return render_template("auth/register.html", form=form)
+    return render_template("auth/register.html", form=form, all_countries=all_countries)
 
 
 @web.route("/login", methods=["GET", "POST"])
@@ -51,3 +52,9 @@ def login():
         else:
             flash("Account is not existed or Password is wrong")
     return render_template('auth/login.html')
+
+
+@web.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for("web.index"))

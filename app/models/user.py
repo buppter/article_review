@@ -15,7 +15,7 @@ class User(Base, UserMixin):
     id = Column(Integer, primary_key=True)
     _password = Column(String(128), nullable=False)
     email = Column(String(64), nullable=False, unique=True)
-    # role_id = Column(Integer, ForeignKey('roles.id'))
+    role_id = Column(Integer)
     first_name = Column(String(32), nullable=False)
     middle_name = Column(String(32))
     last_name = Column(String(32), nullable=False)
@@ -30,7 +30,7 @@ class User(Base, UserMixin):
     Department = Column(String(32))
     street = Column(String(64))
     city = Column(String(16), nullable=False)
-    country = Column(String(16), nullable=False)
+    country_id = Column(Integer, ForeignKey("countries.id"))
     state_or_province = Column(String(16))
     zip = Column(String(32))
     # person_classifications   todo:这个键作为单独的一张表
@@ -51,3 +51,18 @@ class User(Base, UserMixin):
 @login_manager.user_loader
 def get_user(uid):
     return User.query.get(int(uid))
+
+
+class CountryList(db.Model):
+    __tablename__ = 'countries'
+    id = Column(Integer, primary_key=True)
+    country_code = Column(String(16), nullable=False)
+    country_name = Column(String(256), nullable=False)
+    users = relationship("User", backref="country")
+
+
+class Role(db.Model):
+    __tablename__ = 'roles'
+    role_id = Column(Integer, primary_key=True)
+    role_name = Column(String(32), nullable=False)
+

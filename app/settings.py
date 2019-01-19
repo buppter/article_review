@@ -2,3 +2,5 @@
 _Author_ = 'BUPPT'
 
 DEBUG = True
+
+REMEMBER_COOKIE_DURATION = 7 * 24 * 3600

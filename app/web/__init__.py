@@ -5,4 +5,4 @@ _Author_ = 'BUPPT'
 
 web = Blueprint('web', __name__)
 
-from . import auth
+from . import auth, home
