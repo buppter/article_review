@@ -1,9 +1,9 @@
-
 class Permission:
     AUTHOR = 2
     REVIEWER = 4
     EDITOR = 8
     ADMIN = 16
+
 
 def insert_roles():
     roles = {
@@ -30,5 +30,14 @@ def is_list():
     if not r:
         print("r is none")
 
+
+def test():
+    list = [1, 2, 3]
+    if 3 in list:
+        return True
+    else:
+        return False
+
+
 if __name__ == "__main__":
-    is_list()
+    test()

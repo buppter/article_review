@@ -120,8 +120,11 @@ class User(Base, UserMixin):
         return check_password_hash(self._password, raw)
 
     def can(self, perm):
-        for role in self.roles:
-            return role.has_permission(perm)
+        role = Role.query.filter_by(permissions=perm).first()
+        if role in self.roles:
+            return True
+        else:
+            return False
 
     def is_admin(self):
         return self.can(Permission.ADMIN)
