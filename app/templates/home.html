@@ -45,25 +45,27 @@
             <div class="row">
                 <div class="col-3">
                     <div class="list-group" id="list-tab" role="tablist" style="margin-top:55px">
-                        <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
-                           href="#list-home" role="tab" aria-controls="home">Home <span
+                        <a class="list-group-item list-group-item-action active" id="list-author-list"
+                           data-toggle="list"
+                           href="#list-author-home" role="tab" aria-controls="author-main-page">Author Main Menu<span
                                 class="badge badge-info badge-pill" style="float:right">14</span></a>
 
-                        <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                           href="#list-profile" role="tab" aria-controls="profile">Profile</a>
-                        <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list"
-                           href="#list-messages" role="tab" aria-controls="messages">Messages</a>
-                        <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list"
-                           href="#list-settings" role="tab" aria-controls="settings">Settings</a>
+                        <a class="list-group-item list-group-item-action" id="list-reviewer-list" data-toggle="list"
+                           href="#list-reviewer-home" role="tab" aria-controls="reviewer-main-page">Reviewer Main
+                            Menu</a>
+                        <a class="list-group-item list-group-item-action" id="list-editor-list" data-toggle="list"
+                           href="#list-editor-home" role="tab" aria-controls="editor-main-page">Editor Main Menu</a>
+                        <a class="list-group-item list-group-item-action" id="list-admin-list" data-toggle="list"
+                           href="#list-admin-home" role="tab" aria-controls="admin-main-page">Admin Main Menu</a>
                     </div>
                 </div>
                 <div class="col-9">
                     <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade  show active" id="list-home" role="tabpanel"
-                             aria-labelledby="list-home-list">
+                        <div class="tab-pane fade  show active" id="list-author-home" role="tabpanel"
+                             aria-labelledby="list-author-list">
 
                             <div class="title">
-                                <h3>Author Main Menue</h3>
+                                <h3>Author Main Menu</h3>
                             </div>
                             <div class="base-card">
                                 <div class="form-title">
@@ -99,91 +101,98 @@
                             </div>
                         </div>
 
-                        <div class="tab-pane fade" id="list-profile" role="tabpanel"
-                             aria-labelledby="list-profile-list">
+                        <div class="tab-pane fade" id="list-reviewer-home" role="tabpanel"
+                             aria-labelledby="list-reviewer-list">
 
                             <div class="title">
-                                <h3>EDITOR Main Menue</h3>
+                                <h3>Reviewer Main Menu</h3>
                             </div>
                             <div class="base-card">
                                 <div class="form-title">
-                                    <h3>New Submissions</h3>
+                                    <h3>Review Assignments</h3>
                                 </div>
                                 <div class="content pl-5 mb-4 mainpage-card">
-                                    <a class="btn" href="#">Submit New Manuscript</a><br>
-                                    <a class="disabled btn" href="#">Submissions Sent Back to Author </a><span
-                                        class="badge badge-secondary">0</span><br>
-                                </div>
+                                    <a class="btn" href="#">New Reviewer Invitations</a>
+                                    <span class="badge badge-secondary">0</span><br>
 
-                                <div class="form-title">
-                                    <h3>Revisions</h3>
-                                </div>
-                                <div class="content pl-5 mb-4 mainpage-card">
-                                    <a class="btn" href="#">Incomplete Submissions</a><span
-                                        class="badge badge-secondary">1</span><br>
+                                    <a class="disabled btn" href="#">Pending Assignments</a>
+                                    <span class="badge badge-secondary">0</span><br>
 
-                                    <a class="btn" href="#">Submissions Waiting for Author's Approval</a><span
-                                        class="badge badge-secondary">2</span><br>
-
-                                    <a class="btn" href="#">Submissions Being Processed</a><span
-                                        class="badge badge-secondary">3</span><br>
+                                    <a class="disabled btn" href="#">Completed Assignments</a>
+                                    <span class="badge badge-secondary">0</span><br>
                                 </div>
-                                <div class="form-title">
-                                    <h3>Completed</h3>
-                                </div>
-                                <div class="content pl-5 mb-4 mainpage-card">
-                                    <a class="btn" href="#">Submissions Being Processed</a><span
-                                        class="badge badge-secondary">3</span><br>
-                                </div>
-
                             </div>
                         </div>
 
-                        <div class="tab-pane fade" id="list-messages" role="tabpanel"
-                             aria-labelledby="list-messages-list">
+                        <div class="tab-pane fade" id="list-editor-home" role="tabpanel"
+                             aria-labelledby="list-editor-list">
 
                             <div class="title">
-                                <h3>REVIERER Menue</h3>
+                                <h3>Editor Main Menu</h3>
                             </div>
                             <div class="base-card">
                                 <div class="form-title">
-                                    <h3>New Submissions</h3>
+                                    <h3>Submissions With</h3>
                                 </div>
                                 <div class="content pl-5 mb-4 mainpage-card">
-                                    <a class="btn" href="#">Submit New Manuscript</a><br>
-                                    <a class="disabled btn" href="#">Submissions Sent Back to Author </a><span
-                                        class="badge badge-secondary">0</span><br>
+                                    <a class="btn" href="#">0 Reviews Complete</a>
+                                    <span class="badge badge-secondary">0</span>
+
+                                    <a class="btn" href="#">1 Reviews Complete</a>
+                                    <span class="badge badge-secondary">0</span>
+
+                                    <a class="btn" href="#">2 Reviews Complete</a>
+                                    <span class="badge badge-secondary">0</span><br>
+
+                                    <a class="btn" href="#">3 Reviews Complete</a>
+                                    <span class="badge badge-secondary">0</span>
+
+                                    <a class="btn" href="#">4+ Reviews Complete</a>
+                                    <span class="badge badge-secondary">0</span>
                                 </div>
 
                                 <div class="form-title">
-                                    <h3>Revisions</h3>
+                                    <h3>Search</h3>
                                 </div>
                                 <div class="content pl-5 mb-4 mainpage-card">
-                                    <a class="btn" href="#">Incomplete Submissions</a><span
-                                        class="badge badge-secondary">1</span><br>
+                                    <a class="btn" href="#">Search Submissions</a>|
 
-                                    <a class="btn" href="#">Submissions Waiting for Author's Approval</a><span
-                                        class="badge badge-secondary">2</span><br>
-
-                                    <a class="btn" href="#">Submissions Being Processed</a><span
-                                        class="badge badge-secondary">3</span><br>
+                                    <a class="btn" href="#">Search People</a><br>
                                 </div>
                                 <div class="form-title">
-                                    <h3>Completed</h3>
+                                    <h3>Editor 'TO-DO' List</h3>
                                 </div>
                                 <div class="content pl-5 mb-4 mainpage-card">
-                                    <a class="btn" href="#">Submissions Being Processed</a><span
-                                        class="badge badge-secondary">3</span><br>
+                                    <a class="btn" href="#">New Assignments</a>
+                                    <span class="badge badge-secondary">3</span><br>
+                                    <a class="btn" href="#">Submissions with One or More Late Reviews</a>
+                                    <span class="badge badge-secondary">3</span><br>
                                 </div>
 
+                                <div class="form-title">
+                                    <h3>Submissions with Decisions</h3>
+                                </div>
+                                <div class="content pl-5 mb-4 mainpage-card">
+                                    <a class="btn" href="#">My Assignments with Decision</a>
+                                    <span class="badge badge-secondary">3</span><br>
+                                    <a class="btn" href="#">My Assignments with Final Disposition</a>
+                                    <span class="badge badge-secondary">3</span><br>
+                                </div>
+
+                                <div class="form-title">
+                                    <h3>Administrative Functions</h3>
+                                </div>
+                                <div class="content pl-5 mb-4 mainpage-card">
+                                    <a class="btn" href="#">Send Reminder Letters</a><br>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="tab-pane fade" id="list-settings" role="tabpanel"
-                             aria-labelledby="list-settings-list">
+                        <div class="tab-pane fade" id="list-admin-home" role="tabpanel"
+                             aria-labelledby="list-admin-list">
 
                             <div class="title">
-                                <h3>aa Main Menue</h3>
+                                <h3>Admin Main Menu</h3>
                             </div>
                             <div class="base-card">
                                 <div class="form-title">
@@ -226,6 +235,6 @@
     </main>
 {% endblock %}
 
-{% block footer %}
-    <footer class="footer mt-auto py-3 bg-dark fixed-bottom">
-{% endblock %}
+{#{% block footer %}#}
+{#    <footer class="footer mt-auto py-3 bg-dark fixed-bottom">#}
+{#{% endblock %}#}

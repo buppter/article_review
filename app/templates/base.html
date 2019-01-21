@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
 
 <head>
     <meta charset="UTF-8">
@@ -13,7 +13,7 @@
     {% endblock %}
 </head>
 
-<body>
+<body class="d-flex flex-column h-100">
 
 <!-- 顶部导航栏 -->
 <header>
@@ -53,21 +53,21 @@
                     </div>
                 </li>
                 {% if current_user.is_authenticated %}
-{#                    <li class="nav-item dropdown">#}
-{#                        <a class="nav-link dropdown-toggle" id="roleDropdownMenuLink" data-toggle="dropdown"#}
-{#                           aria-haspopup="true" aria-expanded="false">#}
-{#                            Switch To#}
-{#                        </a>#}
-{#                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="roleDropdownMenuLink">#}
-{##}
-{#                            <a class="dropdown-item" href="#">Author</a>#}
-{#                            {% if current_user.can(Permission.REVIEWER) %}#}
-{#                                <a class="dropdown-item" href="#">Reviewer</a>#}
-{#                            {% elif current_user.can(Permission.EDITOR) %}#}
-{#                                <a class="dropdown-item" href="#">Editor</a>#}
-{#                            {% endif %}#}
-{#                        </div>#}
-{#                    </li>#}
+                    {#                    <li class="nav-item dropdown">#}
+                    {#                        <a class="nav-link dropdown-toggle" id="roleDropdownMenuLink" data-toggle="dropdown"#}
+                    {#                           aria-haspopup="true" aria-expanded="false">#}
+                    {#                            Switch To#}
+                    {#                        </a>#}
+                    {#                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="roleDropdownMenuLink">#}
+                    {##}
+                    {#                            <a class="dropdown-item" href="#">Author</a>#}
+                    {#                            {% if current_user.can(Permission.REVIEWER) %}#}
+                    {#                                <a class="dropdown-item" href="#">Reviewer</a>#}
+                    {#                            {% elif current_user.can(Permission.EDITOR) %}#}
+                    {#                                <a class="dropdown-item" href="#">Editor</a>#}
+                    {#                            {% endif %}#}
+                    {#                        </div>#}
+                    {#                    </li>#}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="userDropdownMenuLink" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
@@ -90,10 +90,6 @@
     </nav>
 </header>
 
-<!-- logo信息 -->
-<!-- <div class="logoBar-default">
-<img src="./img/logoBar.png" width="30%"  class="pt-1 pb-1 ml-3">
-</div> -->
 
 <!-- 面包屑 -->
 {#<div>#}
@@ -113,21 +109,19 @@
 
 
 <!-- 底部 -->
-{% block footer %}
-    <footer class="footer mt-auto py-3 bg-dark">
-{% endblock %}
-<div class="container text-muted text-center">
+<footer class="footer mt-auto py-3 bg-dark">
+    <div class="container text-muted text-center">
         <span class="">
             <a class="text-muted" href="http://www.bit.edu.cn/">北京理工大学</a> | <a class="text-muted"
                                                                                 href="http://sme.bit.edu.cn/">北京理工大学管理与经济学院</a>
             | <a class="text-muted" href="http://www.ceep.net.cn/" target="_blank">北京理工大学能源与环境政策研究中心</a>
             </span>
-    </br>
-    <span class="text-muted">版权所有©2019 北京理工大学能源与环境政策研究中心 京ICP备10019879 京公网安备110402430044</span></br>
+        </br>
+        <span class="text-muted">版权所有©2019 北京理工大学能源与环境政策研究中心 京ICP备10019879 京公网安备110402430044</span></br>
 
-    <span class="text-muted">Copyright @2019 Center for Energy and Environmental Policy Research. All
+        <span class="text-muted">Copyright @2019 Center for Energy and Environmental Policy Research. All
                 Rights Reserved</span>
-</div>
+    </div>
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
