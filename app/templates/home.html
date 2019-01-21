@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}
-    <title>Register</title>
+    <title>Home</title>
 {% endblock %}
 {% block custom_css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}" type="text/css">
@@ -12,36 +12,220 @@
     <!-- 主体部分 -->
     <main role="main" class="flex-shrink-0">
         <div class="container">
-            <div class="title">
-                <h3>Author Main Menue</h3>
+            <!-- <div class="title">
+                                <h3>Author Main Menue</h3>
+                            </div>
+                            <div class="base-card">
+                                <div class="form-title">
+                                    <h3>New Submissions</h3>
+                                </div>
+                                <div class="content pl-5 mb-4 mainpage-card">
+                                    <a class="btn" href="#">Submit New Manuscript</a><br>
+                                    <a class="disabled btn" href="#">Submissions Sent Back to Author </a><span class="badge badge-secondary">0</span><br>
+                                </div>
+
+                                <div class="form-title">
+                                    <h3>Revisions</h3>
+                                </div>
+                                <div class="content pl-5 mb-4 mainpage-card">
+                                    <a class="btn" href="./base-table.html">Incomplete Submissions</a><span class="badge badge-secondary">1</span><br>
+
+                                    <a class="btn" href="#">Submissions Waiting for Author's Approval</a><span class="badge badge-secondary">2</span><br>
+
+                                    <a class="btn" href="#">Submissions Being Processed</a><span class="badge badge-secondary">3</span><br>
+                                </div>
+                                <div class="form-title">
+                                    <h3>Completed</h3>
+                                </div>
+                                <div class="content pl-5 mb-4 mainpage-card">
+                                    <a class="btn" href="#">Submissions Being Processed</a><span class="badge badge-secondary">3</span><br>
+                                </div>
+
+                            </div> -->
+            <div class="row">
+                <div class="col-3">
+                    <div class="list-group" id="list-tab" role="tablist" style="margin-top:55px">
+                        <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
+                           href="#list-home" role="tab" aria-controls="home">Home <span
+                                class="badge badge-info badge-pill" style="float:right">14</span></a>
+
+                        <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
+                           href="#list-profile" role="tab" aria-controls="profile">Profile</a>
+                        <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list"
+                           href="#list-messages" role="tab" aria-controls="messages">Messages</a>
+                        <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list"
+                           href="#list-settings" role="tab" aria-controls="settings">Settings</a>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade  show active" id="list-home" role="tabpanel"
+                             aria-labelledby="list-home-list">
+
+                            <div class="title">
+                                <h3>Author Main Menue</h3>
+                            </div>
+                            <div class="base-card">
+                                <div class="form-title">
+                                    <h3>New Submissions</h3>
+                                </div>
+                                <div class="content pl-5 mb-4 mainpage-card">
+                                    <a class="btn" href="#">Submit New Manuscript</a><br>
+                                    <a class="disabled btn" href="#">Submissions Sent Back to Author </a><span
+                                        class="badge badge-secondary">0</span><br>
+                                </div>
+
+                                <div class="form-title">
+                                    <h3>Revisions</h3>
+                                </div>
+                                <div class="content pl-5 mb-4 mainpage-card">
+                                    <a class="btn" href="#">Incomplete Submissions</a><span
+                                        class="badge badge-secondary">1</span><br>
+
+                                    <a class="btn" href="#">Submissions Waiting for Author's Approval</a><span
+                                        class="badge badge-secondary">2</span><br>
+
+                                    <a class="btn" href="#">Submissions Being Processed</a><span
+                                        class="badge badge-secondary">3</span><br>
+                                </div>
+                                <div class="form-title">
+                                    <h3>Completed</h3>
+                                </div>
+                                <div class="content pl-5 mb-4 mainpage-card">
+                                    <a class="btn" href="#">Submissions Being Processed</a><span
+                                        class="badge badge-secondary">3</span><br>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="list-profile" role="tabpanel"
+                             aria-labelledby="list-profile-list">
+
+                            <div class="title">
+                                <h3>EDITOR Main Menue</h3>
+                            </div>
+                            <div class="base-card">
+                                <div class="form-title">
+                                    <h3>New Submissions</h3>
+                                </div>
+                                <div class="content pl-5 mb-4 mainpage-card">
+                                    <a class="btn" href="#">Submit New Manuscript</a><br>
+                                    <a class="disabled btn" href="#">Submissions Sent Back to Author </a><span
+                                        class="badge badge-secondary">0</span><br>
+                                </div>
+
+                                <div class="form-title">
+                                    <h3>Revisions</h3>
+                                </div>
+                                <div class="content pl-5 mb-4 mainpage-card">
+                                    <a class="btn" href="#">Incomplete Submissions</a><span
+                                        class="badge badge-secondary">1</span><br>
+
+                                    <a class="btn" href="#">Submissions Waiting for Author's Approval</a><span
+                                        class="badge badge-secondary">2</span><br>
+
+                                    <a class="btn" href="#">Submissions Being Processed</a><span
+                                        class="badge badge-secondary">3</span><br>
+                                </div>
+                                <div class="form-title">
+                                    <h3>Completed</h3>
+                                </div>
+                                <div class="content pl-5 mb-4 mainpage-card">
+                                    <a class="btn" href="#">Submissions Being Processed</a><span
+                                        class="badge badge-secondary">3</span><br>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="list-messages" role="tabpanel"
+                             aria-labelledby="list-messages-list">
+
+                            <div class="title">
+                                <h3>REVIERER Menue</h3>
+                            </div>
+                            <div class="base-card">
+                                <div class="form-title">
+                                    <h3>New Submissions</h3>
+                                </div>
+                                <div class="content pl-5 mb-4 mainpage-card">
+                                    <a class="btn" href="#">Submit New Manuscript</a><br>
+                                    <a class="disabled btn" href="#">Submissions Sent Back to Author </a><span
+                                        class="badge badge-secondary">0</span><br>
+                                </div>
+
+                                <div class="form-title">
+                                    <h3>Revisions</h3>
+                                </div>
+                                <div class="content pl-5 mb-4 mainpage-card">
+                                    <a class="btn" href="#">Incomplete Submissions</a><span
+                                        class="badge badge-secondary">1</span><br>
+
+                                    <a class="btn" href="#">Submissions Waiting for Author's Approval</a><span
+                                        class="badge badge-secondary">2</span><br>
+
+                                    <a class="btn" href="#">Submissions Being Processed</a><span
+                                        class="badge badge-secondary">3</span><br>
+                                </div>
+                                <div class="form-title">
+                                    <h3>Completed</h3>
+                                </div>
+                                <div class="content pl-5 mb-4 mainpage-card">
+                                    <a class="btn" href="#">Submissions Being Processed</a><span
+                                        class="badge badge-secondary">3</span><br>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="list-settings" role="tabpanel"
+                             aria-labelledby="list-settings-list">
+
+                            <div class="title">
+                                <h3>aa Main Menue</h3>
+                            </div>
+                            <div class="base-card">
+                                <div class="form-title">
+                                    <h3>New Submissions</h3>
+                                </div>
+                                <div class="content pl-5 mb-4 mainpage-card">
+                                    <a class="btn" href="#">Submit New Manuscript</a><br>
+                                    <a class="disabled btn" href="#">Submissions Sent Back to Author </a><span
+                                        class="badge badge-secondary">0</span><br>
+                                </div>
+
+                                <div class="form-title">
+                                    <h3>Revisions</h3>
+                                </div>
+                                <div class="content pl-5 mb-4 mainpage-card">
+                                    <a class="btn" href="#">Incomplete Submissions</a><span
+                                        class="badge badge-secondary">1</span><br>
+
+                                    <a class="btn" href="#">Submissions Waiting for Author's Approval</a><span
+                                        class="badge badge-secondary">2</span><br>
+
+                                    <a class="btn" href="#">Submissions Being Processed</a><span
+                                        class="badge badge-secondary">3</span><br>
+                                </div>
+                                <div class="form-title">
+                                    <h3>Completed</h3>
+                                </div>
+                                <div class="content pl-5 mb-4 mainpage-card">
+                                    <a class="btn" href="#">Submissions Being Processed</a><span
+                                        class="badge badge-secondary">3</span><br>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="base-card">
-                <div class="form-title">
-                    <h3>New Submissions</h3>
-                </div>
-                <div class="content pl-5 mb-4 mainpage-card">
-                    <a class="btn" href="#">Submit New Manuscript</a><br>
-                    <a class="disabled btn" href="#">Submissions Sent Back to Author </a><span class="badge badge-secondary">0</span><br>
-                </div>
 
-                <div class="form-title">
-                    <h3>Revisions</h3>
-                </div>
-                <div class="content pl-5 mb-4 mainpage-card">
-                    <a class="btn" href="./base-table.html">Incomplete Submissions</a><span class="badge badge-secondary">1</span><br>
-
-                    <a class="btn" href="#">Submissions Waiting for Author's Approval</a><span class="badge badge-secondary">2</span><br>
-
-                    <a class="btn" href="#">Submissions Being Processed</a><span class="badge badge-secondary">3</span><br>
-                </div>
-                <div class="form-title">
-                    <h3>Completed</h3>
-                </div>
-                <div class="content pl-5 mb-4 mainpage-card">
-                    <a class="btn" href="#">Submissions Being Processed</a><span class="badge badge-secondary">3</span><br>
-                </div>
-
-            </div>
         </div>
     </main>
+{% endblock %}
+
+{% block footer %}
+    <footer class="footer mt-auto py-3 bg-dark fixed-bottom">
 {% endblock %}

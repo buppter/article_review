@@ -43,3 +43,7 @@ html {
   padding: 0 6px;
   border-left: none;
 }
+
+.list-group-item{
+  background-color: #f8f8f8
+}
