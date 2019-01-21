@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from wtforms import Form, StringField, PasswordField, IntegerField, BooleanField, RadioField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, InputRequired
 
 from app.models.user import User
 
@@ -82,7 +82,7 @@ class RegisterForm(Form):
 
     is_reviewer = IntegerField(
         validators=[
-            DataRequired(message="Please choose whether you want to register as a reviewer")
+            InputRequired(message="Please choose whether you want to register as a reviewer")
         ])
 
     def validate_email(self, field):
@@ -102,6 +102,3 @@ class LoginForm(Form):
         Length(6, 32)
     ])
 
-    role = IntegerField(validators=[
-        DataRequired(message="Please select your role")
-    ])

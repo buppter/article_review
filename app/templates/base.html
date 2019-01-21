@@ -32,9 +32,11 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ url_for("web.home") }}">Home <span class="sr-only">(current)</span></a>
                 </li>
+                {% if current_user.can(Permission.EDITOR) %}
                 <li class="nav-item">
                     <a class="nav-link" href="#">Submit Paper</a>
                 </li>
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="#">Guide</a>
                 </li>
