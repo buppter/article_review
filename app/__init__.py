@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 from flask import Flask
 from flask_login import LoginManager
+from flask_caching import Cache
 
 from app.models.base import db
 
 _Author_ = 'BUPPT'
 
 login_manager = LoginManager()
+cache = Cache()
 
 
 def create_app():
@@ -19,6 +21,7 @@ def create_app():
     login_manager.login_message = "Please sign in or register"
 
     login_manager.init_app(app)
+    cache.init_app(app)
     db.init_app(app)
     db.create_all(app=app)
 

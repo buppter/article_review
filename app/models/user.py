@@ -94,7 +94,6 @@ class User(Base, UserMixin):
     zip = Column(String(32))
     # person_classifications   todo:这个键作为单独的一张表
     person_keywords = Column(Text, nullable=False)
-    is_reviewer = Column(String(16), nullable=False)
 
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)

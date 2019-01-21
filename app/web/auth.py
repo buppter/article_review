@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
+import datetime
+
 from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user
 
+from app import cache
 from app.forms.auth import RegisterForm, LoginForm
 from app.models.base import db
 from app.models.user import User, CountryList, Permission
@@ -11,12 +14,16 @@ _Author_ = 'BUPPT'
 
 
 @web.route("/")
+@cache.cached(timeout=60, key_prefix="index")
 def index():
-    return render_template('index.html')
+    time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    return render_template('index.html', time=time)
 
 
 @web.route("/register", methods=["GET", "POST"])
+@cache.cached(timeout=60 * 60)
 def register():
+    time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     form = RegisterForm(request.form)
     all_countries = CountryList.query.all()
     if request.method == 'POST' and form.validate():
@@ -37,7 +44,7 @@ def register():
 
         return redirect(url_for('web.login'))
 
-    return render_template("auth/register.html", form=form, all_countries=all_countries)
+    return render_template("auth/register.html", form=form, all_countries=all_countries, time=time)
 
 
 @web.route("/login", methods=["GET", "POST"])
