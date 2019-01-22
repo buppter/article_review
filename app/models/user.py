@@ -38,8 +38,8 @@ class Role(db.Model):
         roles = {
             'Author': [Permission.AUTHOR],
             'Reviewer': [Permission.REVIEWER],
-            'Editor': [Permission.EDITOR],
-            'Admin': [Permission.ADMIN],
+            'Associate Editor': [Permission.EDITOR],
+            'Editor-In-Chief': [Permission.ADMIN],
         }
         default_role = 'Author'
         for r in roles:
@@ -81,13 +81,13 @@ class User(db.Model, Base, UserMixin):
     last_name = db.Column(db.String(32), nullable=False)
     title = db.Column(db.String(16), nullable=False)
     degree = db.Column(db.String(16))
-    nick_name = db.Column(db.String(32))
+    # nick_name = db.Column(db.String(32))
     phone_number = db.Column(db.String(16))
     fax_number = db.Column(db.String(16))
     secondary_email = db.Column(db.String(64))
     institution_phone_number = db.Column(db.String(16))
     institution = db.Column(db.String(32))
-    Department = db.Column(db.String(32))
+    department = db.Column(db.String(32))
     street = db.Column(db.String(64))
     city = db.Column(db.String(16), nullable=False)
     country_id = db.Column(db.Integer, db.ForeignKey("countries.id"))
@@ -107,7 +107,7 @@ class User(db.Model, Base, UserMixin):
 
     @property
     def password(self):
-        return self._password
+        return AttributeError('password is not a readable attribute')
 
     @password.setter
     def password(self, raw):

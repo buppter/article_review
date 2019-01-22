@@ -16,7 +16,7 @@ _Author_ = 'BUPPT'
 @web.route("/")
 # @cache.cached(timeout=60, key_prefix="index")
 def index():
-    print(current_app.config['SEEP_ADMIN'])
+    print(current_app.config['ADMIN_EMAIL'])
     return render_template('index.html')
 
 
@@ -34,7 +34,7 @@ def register():
         keywords = ",".join(keywords)
 
         with db.auto_commit():
-            user = User()
+            user = User(email=form.email.data)
             user.set_attrs(form.data)
             user.person_keywords = keywords
             if data["is_reviewer"] == 1:

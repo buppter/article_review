@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask_wtf import Form
+from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, IntegerField, BooleanField, RadioField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, InputRequired
 
@@ -8,7 +8,7 @@ from app.models.user import User
 _Author_ = 'BUPPT'
 
 
-class RegisterForm(Form):
+class RegisterForm(FlaskForm):
     email = StringField(validators=[
         DataRequired(message="Please input your email"),
         Length(6, 64),
@@ -42,8 +42,6 @@ class RegisterForm(Form):
 
     degree = StringField()
 
-    nick_name = StringField()
-
     phone_number = StringField()
 
     fax_number = StringField()
@@ -56,7 +54,7 @@ class RegisterForm(Form):
 
     department = StringField()
 
-    street_address = StringField(validators=[
+    street = StringField(validators=[
         DataRequired(message="Please input your street address")
     ])
 
@@ -91,7 +89,7 @@ class RegisterForm(Form):
             raise ValidationError("This Email has been registered")
 
 
-class LoginForm(Form):
+class LoginForm(FlaskForm):
     email = StringField(validators=[
         DataRequired(),
         Length(6, 64),

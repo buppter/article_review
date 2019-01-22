@@ -97,12 +97,12 @@
                             <div class="col-sm-4">
                                 <select class="custom-select custom-select-sm " id="title" name="title">
                                     <option value="" hidden disabled selected>Please choose a title</option>
-                                    <option value="dr">Dr.</option>
-                                    <option value="miss">Miss</option>
-                                    <option value="mr">Mr.</option>
-                                    <option value="mrs">Mrs.</option>
-                                    <option value="ms">Ms.</option>
-                                    <option value="professor">Professor</option>
+                                    <option value="Dr">Dr.</option>
+                                    <option value="Miss">Miss</option>
+                                    <option value="Mr">Mr.</option>
+                                    <option value="Mrs">Mrs.</option>
+                                    <option value="Ms">Ms.</option>
+                                    <option value="Professor">Professor</option>
                                 </select>
                             </div>
                             <small class="form-text text-danger">
@@ -213,8 +213,8 @@
                         <div class="row">
                             <label for="streetAdress" class="col-sm-3 col-form-label ">Street Adress</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" id="street_address"
-                                       name="street_address"
+                                <input type="text" class="form-control form-control-sm" id="street"
+                                       name="street"
                                        aria-describedby="streetAdressHelp" required>
                             </div>
                             <small class="form-text text-danger" id="streetAdressHelp">
@@ -333,7 +333,7 @@
                             </div>
                         </div>
                     </div>
-                {{ csrf_token }}
+                {{ form.csrf_token }}
                 </form>
             </div>
             <!--<div class="col-sm-12" style="text-align: center">-->
