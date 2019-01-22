@@ -16,7 +16,6 @@ _Author_ = 'BUPPT'
 @web.route("/")
 # @cache.cached(timeout=60, key_prefix="index")
 def index():
-    print(current_app.config['ADMIN_EMAIL'])
     return render_template('index.html')
 
 
@@ -59,7 +58,7 @@ def login():
                 next_url = url_for("web.index")
             return redirect(next_url)
         else:
-            flash("Account is not existed or Password is wrong")
+            flash("Invalid username or password.")
     return render_template('auth/login.html', form=form)
 
 

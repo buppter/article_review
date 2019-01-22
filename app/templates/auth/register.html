@@ -51,7 +51,8 @@
                             <label for="inputEmail" class="col-sm-3 col-form-label ">E-mail Address</label>
                             <div class="col-sm-4">
                                 <input type="email" class="form-control form-control-sm" id="inputEmail" name="email"
-                                       aria-describedby="emailHelp" required>
+                                       aria-describedby="emailHelp" required
+                                       value="{{ form.data['email'] | default('',true) }}">
                             </div>
                             <small class="form-text text-danger" id="emailHelp">
                                 *req
@@ -114,7 +115,9 @@
                             <div class="col-sm-4">
                                 <input type="text" class="form-control form-control-sm" id="first_name"
                                        name="first_name"
-                                       aria-describedby="firstnameHelp" required>
+                                       aria-describedby="firstnameHelp" required
+                                       value="{{ form.data['first_name'] | default('',true) }}"
+                                >
                             </div>
                             <small class="form-text text-danger" id="firstnameHelp">
                                 *req
@@ -124,14 +127,15 @@
                             <label for="middlename" class="col-sm-3 col-form-label ">Middle Name</label>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control form-control-sm" id="middle_name"
-                                       name="middle_name">
+                                       name="middle_name" value="{{ form.data['middle_name'] | default('',true) }}">
                             </div>
                         </div>
                         <div class="row">
                             <label for="lastname" class="col-sm-3 col-form-label ">Last Name</label>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control form-control-sm" id="lastname" name="last_name"
-                                       aria-describedby="lastnameHelp" required>
+                                       aria-describedby="lastnameHelp" required
+                                       value="{{ form.data['last_name'] | default('',true) }}">
                             </div>
                             <small class="form-text text-danger" id="lastnameHelp">
                                 *req
@@ -140,34 +144,35 @@
                         <div class="row">
                             <label for="degree" class="col-sm-3 col-form-label ">Degree</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" id="degree" name="degree">
+                                <input type="text" class="form-control form-control-sm" id="degree" name="degree"
+                                       value="{{ form.data['degree'] | default('',true) }}">
                             </div>
                             <small class="form-text">
                                 (Ph.D., M.D., Jr., etc.)
                             </small>
                         </div>
-{#                        <div class="row">#}
-{#                            <label for="preferredName" class="col-sm-3 col-form-label ">Preferred Name</label>#}
-{#                            <div class="col-sm-4">#}
-{#                                <input type="text" class="form-control form-control-sm" id="preferredName"#}
-{#                                       name="nick_name">#}
-{#                            </div>#}
-{#                            <small class="form-text">#}
-{#                                (nickname)#}
-{#                            </small>#}
-{#                        </div>#}
+                        {#                        <div class="row">#}
+                        {#                            <label for="preferredName" class="col-sm-3 col-form-label ">Preferred Name</label>#}
+                        {#                            <div class="col-sm-4">#}
+                        {#                                <input type="text" class="form-control form-control-sm" id="preferredName"#}
+                        {#                                       name="nick_name">#}
+                        {#                            </div>#}
+                        {#                            <small class="form-text">#}
+                        {#                                (nickname)#}
+                        {#                            </small>#}
+                        {#                        </div>#}
                         <div class="row">
                             <label for="telephoneNumber" class="col-sm-3 col-form-label ">Telephone Number</label>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control form-control-sm" id="phone_number"
-                                       name="phone_number">
+                                       name="phone_number" value="{{ form.data['phone_number'] | default('',true) }}">
                             </div>
                         </div>
                         <div class="row">
                             <label for="faxNumber" class="col-sm-3 col-form-label ">Fax Number</label>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control form-control-sm" id="faxNumber"
-                                       name="fax_number">
+                                       name="fax_number" value="{{ form.data['fax_number'] | default('',true) }}">
                             </div>
                         </div>
                         <div class="row">
@@ -175,7 +180,8 @@
                             <div class="col-sm-4">
                                 <input type="email" class="form-control form-control-sm" id="secondary_email"
                                        name="secondary_email"
-                                       maxlength="191" multiple>
+                                       maxlength="191" multiple
+                                       value="{{ form.data['secondary_email'] | default('',true) }}">
                             </div>
                             <small style="width:41%;">
                                 (Multiple e-mail addresses should be separated by a comma. A maximum of 191 characters
@@ -193,21 +199,22 @@
                             <label for="position" class="col-sm-3 col-form-label ">Telephone Number</label>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control form-control-sm" id="institution_phone_number"
-                                       name="institution_phone_number">
+                                       name="institution_phone_number"
+                                       value="{{ form.data['institution_phone_number'] | default('',true) }}">
                             </div>
                         </div>
                         <div class="row">
                             <label for="institution" class="col-sm-3 col-form-label ">Institution</label>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control form-control-sm" id="institution"
-                                       name="institution">
+                                       name="institution" value="{{ form.data['institution'] | default('',true) }}">
                             </div>
                         </div>
                         <div class="row">
                             <label for="department" class="col-sm-3 col-form-label ">Department</label>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control form-control-sm" id="department"
-                                       name="department">
+                                       name="department" value="{{ form.data['department'] | default('',true) }}">
                             </div>
                         </div>
                         <div class="row">
@@ -215,7 +222,8 @@
                             <div class="col-sm-4">
                                 <input type="text" class="form-control form-control-sm" id="street"
                                        name="street"
-                                       aria-describedby="streetAdressHelp" required>
+                                       aria-describedby="streetAdressHelp" required
+                                       value="{{ form.data['street'] | default('',true) }}">
                             </div>
                             <small class="form-text text-danger" id="streetAdressHelp">
                                 *req
@@ -225,7 +233,8 @@
                         <div class="row">
                             <label for="city" class="col-sm-3 col-form-label ">City</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" id="city" name="city" required>
+                                <input type="text" class="form-control form-control-sm" id="city" name="city" required
+                                       value="{{ form.data['city'] | default('',true) }}">
                             </div>
                             <small class="form-text text-danger">
                                 *req
@@ -249,13 +258,15 @@
                             <label for="state" class="col-sm-3 col-form-label ">State or Province</label>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control form-control-sm" id="state"
-                                       name="state_or_province">
+                                       name="state_or_province"
+                                       value="{{ form.data['state_or_province'] | default('',true) }}">
                             </div>
                         </div>
                         <div class="row">
                             <label for="zip" class="col-sm-3 col-form-label ">Zip or Postal Code</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" id="zip" name="zip">
+                                <input type="text" class="form-control form-control-sm" id="zip" name="zip"
+                                       value="{{ form.data['zip'] | default('',true) }}">
                             </div>
                         </div>
 
@@ -277,32 +288,37 @@
                         <div class="row">
                             <label class="col-sm-3 col-form-label">Personal Keywords </label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" name="person_keywords">
+                                <input type="text" class="form-control form-control-sm" name="person_keywords"
+                                       value="{{ form.data['person_keywords'] | default('',true) }}">
                             </div>
                             <small class="form-text text-danger">*req</small>
                         </div>
                         <div class="row">
                             <div class="col-sm-3" style="height:38px"></div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" name="person_keywords1">
+                                <input type="text" class="form-control form-control-sm" name="person_keywords1"
+                                       value="{{ form.data['person_keywords1'] | default('',true) }}">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3" style="height:38px"></div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" name="person_keywords2">
+                                <input type="text" class="form-control form-control-sm" name="person_keywords2"
+                                       value="{{ form.data['person_keywords2'] | default('',true) }}">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3" style="height:38px"></div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" name="person_keywords3">
+                                <input type="text" class="form-control form-control-sm" name="person_keywords3"
+                                       value="{{ form.data['person_keywords3'] | default('',true) }}">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3" style="height:38px"></div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control form-control-sm" name="person_keywords4">
+                                <input type="text" class="form-control form-control-sm" name="person_keywords4"
+                                       value="{{ form.data['person_keywords4'] | default('',true) }}">
                             </div>
                         </div>
 
@@ -333,7 +349,7 @@
                             </div>
                         </div>
                     </div>
-                {{ form.csrf_token }}
+                    {{ form.csrf_token }}
                 </form>
             </div>
             <!--<div class="col-sm-12" style="text-align: center">-->
