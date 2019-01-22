@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from wtforms import Form, StringField, PasswordField, IntegerField, BooleanField, RadioField
+from flask_wtf import Form
+from wtforms import StringField, PasswordField, IntegerField, BooleanField, RadioField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, InputRequired
 
 from app.models.user import User

@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import current_app
 from flask_login import UserMixin, AnonymousUserMixin
-from sqlalchemy import Column, Integer, String, ForeignKey, Text, Table
-from sqlalchemy.orm import relationship
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from app import login_manager
@@ -18,10 +16,9 @@ class Permission:
     ADMIN = 16
 
 
-user_roles = Table('user_roles',
-                   Base.metadata,
-                   Column('user_id', Integer, ForeignKey("users.id")),
-                   Column('role_id', Integer, ForeignKey("roles.id")))
+user_roles = db.Table('user_roles',
+                      db.Column('user_id', db.Integer, db.ForeignKey("users.id")),
+                      db.Column('role_id', db.Integer, db.ForeignKey("roles.id")))
 
 
 class Role(db.Model):
@@ -74,37 +71,37 @@ class Role(db.Model):
         return '<Role %r>' % self.name
 
 
-class User(Base, UserMixin):
+class User(db.Model, Base, UserMixin):
     __tablename__ = 'users'
-    id = Column(Integer, primary_key=True)
-    _password = Column(String(128), nullable=False)
-    email = Column(String(64), nullable=False, unique=True)
-    first_name = Column(String(32), nullable=False)
-    middle_name = Column(String(32))
-    last_name = Column(String(32), nullable=False)
-    title = Column(String(16), nullable=False)
-    degree = Column(String(16))
-    nick_name = Column(String(32))
-    phone_number = Column(String(16))
-    fax_number = Column(String(16))
-    secondary_email = Column(String(64))
-    institution_phone_number = Column(String(16))
-    institution = Column(String(32))
-    Department = Column(String(32))
-    street = Column(String(64))
-    city = Column(String(16), nullable=False)
-    country_id = Column(Integer, ForeignKey("countries.id"))
-    state_or_province = Column(String(16))
-    zip = Column(String(32))
+    id = db.Column(db.Integer, primary_key=True)
+    _password = db.Column(db.String(128), nullable=False)
+    email = db.Column(db.String(64), nullable=False, unique=True)
+    first_name = db.Column(db.String(32), nullable=False)
+    middle_name = db.Column(db.String(32))
+    last_name = db.Column(db.String(32), nullable=False)
+    title = db.Column(db.String(16), nullable=False)
+    degree = db.Column(db.String(16))
+    nick_name = db.Column(db.String(32))
+    phone_number = db.Column(db.String(16))
+    fax_number = db.Column(db.String(16))
+    secondary_email = db.Column(db.String(64))
+    institution_phone_number = db.Column(db.String(16))
+    institution = db.Column(db.String(32))
+    Department = db.Column(db.String(32))
+    street = db.Column(db.String(64))
+    city = db.Column(db.String(16), nullable=False)
+    country_id = db.Column(db.Integer, db.ForeignKey("countries.id"))
+    state_or_province = db.Column(db.String(16))
+    zip = db.Column(db.String(32))
     # person_classifications   todo:这个键作为单独的一张表
-    person_keywords = Column(Text, nullable=False)
-    roles = relationship('Role', secondary=user_roles, backref=db.backref('user', lazy='dynamic'))
+    person_keywords = db.Column(db.Text, nullable=False)
+    roles = db.relationship('Role', secondary=user_roles, backref=db.backref('user', lazy='dynamic'))
 
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
         if not self.roles:
-            if self.email == current_app.config['SEEP_ADMIN']:
-                self.roles.append(Role.query.filter_by(name='Admin').first())
+            if self.email in current_app.config['ADMIN_EMAIL']:
+                self.roles.append(Role.query.filter_by(permissions=Permission.ADMIN).first())
             if not self.roles:
                 self.roles.append(Role.query.filter_by(default=True).first())
 
@@ -148,7 +145,7 @@ def get_user(uid):
 
 class CountryList(db.Model):
     __tablename__ = 'countries'
-    id = Column(Integer, primary_key=True)
-    country_code = Column(String(16), nullable=False)
-    country_name = Column(String(256), nullable=False)
-    users = relationship("User", backref="country")
+    id = db.Column(db.Integer, primary_key=True)
+    country_code = db.Column(db.String(16), nullable=False)
+    country_name = db.Column(db.String(256), nullable=False)
+    users = db.relationship("User", backref="country")

@@ -2,6 +2,7 @@
 from flask import Flask
 from flask_login import LoginManager
 from flask_caching import Cache
+from flask_wtf import CSRFProtect
 
 from app.models.base import db
 
@@ -22,6 +23,7 @@ def create_app():
 
     login_manager.init_app(app)
     cache.init_app(app)
+    CSRFProtect(app)
     db.init_app(app)
     db.create_all(app=app)
 
