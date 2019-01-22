@@ -60,7 +60,7 @@ def login():
             return redirect(next_url)
         else:
             flash("Account is not existed or Password is wrong")
-    return render_template('auth/login.html')
+    return render_template('auth/login.html', form=form)
 
 
 @web.route("/logout")
