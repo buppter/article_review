@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime
+
 from flask import current_app
 from flask_login import UserMixin, AnonymousUserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -182,8 +184,12 @@ class NewSubmission(db.Model, Base):
     associate_editor = db.relationship("User", foreign_keys='NewSubmission.associate_editor_id',
                                        backref='associate_editor')
 
+    @property
+    def article_id(self):
+        return "CC-{0}-{1}".format(datetime.now().year, self.id)
+
     def __repr__(self):
-        return '<NewSubmission id={0}, title={1}, user={2}>'.format(self.id, self.title, self.uid)
+        return '<NewSubmission id={0}, title={1}, user={2}>'.format(self.article_id, self.title, self.uid)
 
 
 class ArticleType(db.Model):
