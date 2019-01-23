@@ -3,7 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, IntegerField, BooleanField, RadioField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, InputRequired
 
-from app.models.user import User
+from app.models.models import User
 
 _Author_ = 'BUPPT'
 

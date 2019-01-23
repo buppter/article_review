@@ -96,6 +96,7 @@ class User(db.Model, Base, UserMixin):
     # person_classifications   todo:这个键作为单独的一张表
     person_keywords = db.Column(db.Text, nullable=False)
     roles = db.relationship('Role', secondary=user_roles, backref=db.backref('user', lazy='dynamic'))
+    articles = db.relationship('NewSubmission', backref='user')
 
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
@@ -149,3 +150,25 @@ class CountryList(db.Model):
     country_code = db.Column(db.String(16), nullable=False)
     country_name = db.Column(db.String(256), nullable=False)
     users = db.relationship("User", backref="country")
+
+
+class NewSubmission(db.Model, Base):
+    __tablename__ = 'new_submission'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    type_id = db.Column(db.Integer, db.ForeignKey('article_type.id'))
+    title = db.Column(db.String(256), nullable=False)
+    abstract = db.Column(db.Text)
+    keywords = db.Column(db.Text)
+    # classification_id  TODO: 此键表还未建
+    comments = db.Column(db.Text)
+    current_status = db.Column(db.Integer)
+    final_disposition = db.Column(db.Integer)
+    editor_decision = db.Column(db.Integer)
+
+
+class ArticleType(db.Model):
+    __tablename__ = 'article_type'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64), nullable=False)
+    articles = db.relationship("NewSubmission", backref='type')

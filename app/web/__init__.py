@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import Blueprint
 
-from app.models.user import Permission
+from app.models.models import Permission
 
 _Author_ = 'BUPPT'
 
