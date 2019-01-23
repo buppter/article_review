@@ -28,6 +28,9 @@ class Role(db.Model):
     default = db.Column(db.Boolean, default=False, index=True)
     permissions = db.Column(db.Integer)
 
+    def __repr__(self):
+        return '<Role id={0}, name={1}>'.format(self.id, self.name)
+
     def __init__(self, **kwargs):
         super(Role, self).__init__(**kwargs)
         if self.permissions is None:
@@ -67,9 +70,6 @@ class Role(db.Model):
     def has_permission(self, perm):
         return self.permissions & perm == perm
 
-    def __repr__(self):
-        return '<Role %r>' % self.name
-
 
 class User(db.Model, Base, UserMixin):
     __tablename__ = 'users'
@@ -96,9 +96,12 @@ class User(db.Model, Base, UserMixin):
     # person_classifications   todo:这个键作为单独的一张表
     person_keywords = db.Column(db.Text, nullable=False)
     roles = db.relationship('Role', secondary=user_roles, backref=db.backref('users', lazy='dynamic'))
+
     # article = db.relationship('NewSubmission', back_populates='uid')
     # editor_in_chief = db.relationship('NewSubmission', back_populates='editor_in_chief')
     # associate_editor = db.relationship('NewSubmission', back_populates='associate_editor')
+    def __repr__(self):
+        return '<User id={0}, email={1}, roles={2}>'.format(self.id, self.email, self.roles)
 
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
@@ -153,6 +156,10 @@ class CountryList(db.Model):
     country_name = db.Column(db.String(256), nullable=False)
     users = db.relationship("User", backref="country")
 
+    def __repr__(self):
+        return '<Country id={0}, country_code={1}, country_name={2}>'.format(self.id, self.country_code,
+                                                                             self.country_name)
+
 
 class NewSubmission(db.Model, Base):
     __tablename__ = 'new_submission'
@@ -169,9 +176,14 @@ class NewSubmission(db.Model, Base):
     current_status = db.Column(db.Integer)
     final_disposition = db.Column(db.Integer)
     editor_decision = db.Column(db.Integer)
-    uid = db.relationship("User", foreign_keys='NewSubmission.user_id')
-    editor_in_chief = db.relationship("User", foreign_keys='NewSubmission.editor_in_chief_id')
-    associate_editor = db.relationship("User", foreign_keys='NewSubmission.associate_editor_id')
+    uid = db.relationship("User", foreign_keys='NewSubmission.user_id', backref='articles')
+    editor_in_chief = db.relationship("User", foreign_keys='NewSubmission.editor_in_chief_id',
+                                      backref='editor_in_chief')
+    associate_editor = db.relationship("User", foreign_keys='NewSubmission.associate_editor_id',
+                                       backref='associate_editor')
+
+    def __repr__(self):
+        return '<NewSubmission id={0}, title={1}, user={2}>'.format(self.id, self.title, self.uid)
 
 
 class ArticleType(db.Model):
@@ -179,3 +191,6 @@ class ArticleType(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), nullable=False)
     articles = db.relationship("NewSubmission", backref='type')
+
+    def __repr__(self):
+        return '<ArticleType id={0}, name={1}>'.format(self.id, self.name)
